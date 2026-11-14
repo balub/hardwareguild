@@ -1,0 +1,697 @@
+/* Open Hardware Guild — kraft design system, carried over from absurd.industries.
+   Custom CSS only for what Tailwind can't express: feTurbulence torn
+   edges, backdrop-filter menu band, placeholder markers. Utility styling
+   lives in the markup. */
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #d4b896;
+    background-image: url("assets/images/kraft-paper.jpg");
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+section[id] {
+    scroll-margin-top: 1.5rem;
+}
+
+/* ── torn-paper cards (feTurbulence displacement) ── */
+.torn-card {
+    position: relative;
+}
+
+.torn-card > .torn-bg,
+.torn-card > .torn-bg-kraft,
+.torn-card > .torn-bg-ink {
+    position: absolute;
+    inset: 0;
+    filter: url(#torn-edge-filter);
+    z-index: 0;
+}
+
+.torn-card > .torn-bg {
+    background: #faf3e8;
+}
+
+.torn-card > .torn-bg-kraft {
+    background: #e8d5b7;
+}
+
+.torn-card > .torn-bg-ink {
+    background: #1a1a1a;
+}
+
+.torn-card > .torn-content {
+    position: relative;
+    z-index: 1;
+}
+
+.torn-grid > .torn-card:nth-child(3n + 2) > .torn-bg,
+.torn-grid > .torn-card:nth-child(3n + 2) > .torn-bg-kraft,
+.torn-grid > .torn-card:nth-child(3n + 2) > .torn-bg-ink {
+    filter: url(#torn-edge-filter-2);
+}
+
+.torn-grid > .torn-card:nth-child(3n + 3) > .torn-bg,
+.torn-grid > .torn-card:nth-child(3n + 3) > .torn-bg-kraft,
+.torn-grid > .torn-card:nth-child(3n + 3) > .torn-bg-ink {
+    filter: url(#torn-edge-filter-3);
+}
+
+.tape-piece {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 32px;
+    background-image: url("assets/images/paper-tape.webp");
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    opacity: 0.9;
+}
+
+/* ── stamps + labels ── */
+.stamp-label {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    padding: 0.35rem 0.75rem;
+    background: #faf3e8;
+}
+
+.stat-chip i {
+    color: #ff5900;
+}
+
+.postal-stamp {
+    width: 118px;
+    height: 118px;
+    border: 3px solid #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0.38;
+    outline: 2px solid #1a1a1a;
+    outline-offset: 4px;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.3;
+    transform: rotate(-12deg);
+}
+
+/* "EXAMPLE" rubber stamp slapped across placeholder project cards */
+.example-stamp {
+    position: absolute;
+    top: 1.1rem;
+    right: 1rem;
+    z-index: 3;
+    padding: 0.2rem 0.6rem;
+    border: 2px solid #ff5900;
+    color: #ff5900;
+    background: rgba(250, 243, 232, 0.85);
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transform: rotate(6deg);
+}
+
+/* ── placeholders: anything a volunteer still needs to fill in ──
+   Search the HTML for "TODO" to find every one of these. */
+.slot {
+    display: inline-block;
+    font-family: "Space Mono", monospace;
+    font-size: 0.78em;
+    font-weight: 700;
+    color: #cc4700;
+    border: 1.5px dashed #ff5900;
+    background: rgba(255, 89, 0, 0.06);
+    padding: 0.05rem 0.4rem;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+a.slot:hover {
+    background: rgba(255, 89, 0, 0.14);
+}
+
+.img-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(26, 26, 26, 0.04) 0 10px,
+        rgba(26, 26, 26, 0.09) 10px 20px
+    );
+    border: 2px dashed rgba(26, 26, 26, 0.3);
+    color: #6b5b4a;
+    font-family: "Space Mono", monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.img-slot i {
+    font-size: 2rem;
+}
+
+/* ── shipping-label buttons ── */
+.label-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: #faf3e8;
+    border: 2px dashed #1a1a1a;
+    padding: 0.85rem 1.5rem 0.85rem 2.75rem;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.label-btn::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border: 2px solid #1a1a1a;
+    border-radius: 50%;
+}
+
+.label-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.label-btn-stamp {
+    background: #ff5900;
+    color: #faf3e8;
+    border-color: #ff5900;
+    border-style: solid;
+}
+
+.label-btn-stamp::before {
+    border-color: #faf3e8;
+}
+
+/* ── lift on hover ── */
+.lift {
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.lift:hover {
+    transform: translateY(-3px);
+}
+
+.checklist-item {
+    border-left: 4px solid #ff5900;
+}
+
+/* small inline links inside cards: orange line drawn under on hover */
+.ink-link {
+    color: #1a1a1a;
+    font-weight: 600;
+    text-decoration: none;
+    background-image: linear-gradient(#ff5900, #ff5900);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    padding-bottom: 1px;
+    transition: background-size 0.25s ease;
+}
+
+.ink-link:hover {
+    background-size: 0 2px;
+    background-position: 100% 100%;
+}
+
+/* ── header: slanted wordmark sticker + kraft menu band (NOT fixed) ── */
+.site-header {
+    position: relative;
+    z-index: 30;
+}
+
+.menu-band {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 3.6rem;
+    padding: 0.4rem 0.8rem 0.4rem 17rem;
+    background: rgba(184, 149, 106, 0.55);
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    border-radius: 99rem;
+    backdrop-filter: saturate(1.2) blur(6px);
+    -webkit-backdrop-filter: saturate(1.2) blur(6px);
+    box-shadow: 0 2px 8px rgba(26, 26, 26, 0.1);
+}
+
+/* The name isn't decided yet, so the "logo" is a paper sticker with the
+   placeholder name. Swap the text (or drop in an <img>) once it's chosen. */
+.site-logo {
+    position: absolute;
+    left: 0.6rem;
+    top: 50%;
+    transform: translateY(-62%) rotate(-9deg);
+    z-index: 40;
+    display: block;
+    text-decoration: none;
+}
+
+.wordmark {
+    display: block;
+    background: #faf3e8;
+    border: 2px solid #1a1a1a;
+    padding: 0.55rem 0.9rem 0.5rem;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: #1a1a1a;
+    white-space: nowrap;
+    box-shadow: 3px 5px 0 rgba(26, 26, 26, 0.18);
+}
+
+.wordmark small {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ff5900;
+}
+
+@media (max-width: 767px) {
+    .menu-band {
+        min-height: 3rem;
+        padding-left: 12.5rem;
+    }
+    .wordmark {
+        font-size: 1.05rem;
+        padding: 0.45rem 0.7rem 0.4rem;
+    }
+    .wordmark small {
+        font-size: 0.48rem;
+    }
+}
+
+.top-nav a {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+/* hover = orange line drawn under the link (text stays ink), undrawn on leave */
+.top-nav a:not(.nav-join)::after {
+    content: "";
+    position: absolute;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.2rem;
+    height: 2px;
+    background: #ff5900;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+}
+
+.top-nav a:not(.nav-join):hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav-join {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: 0.4rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    background: #ff5900;
+    color: #faf3e8 !important;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background 0.15s,
+        transform 0.15s;
+}
+
+.nav-join:hover {
+    background: #cc4700;
+    transform: translateY(-1px);
+}
+
+.nav-join-mobile {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    padding: 0.4rem 0.75rem;
+}
+
+/* ── mobile bottom bar ── */
+.mobile-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    z-index: 50;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-bar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    color: #faf3e8;
+    text-decoration: none;
+    font-family: "Space Mono", monospace;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.15s;
+}
+
+.mobile-bar a:hover,
+.mobile-bar a:active {
+    color: #ff5900;
+}
+
+.mobile-bar a i {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-bottom: 80px;
+    }
+}
+
+/* ── footer: light kraft band, icon links ── */
+.footer-wrap {
+    background: rgba(184, 149, 106, 0.35);
+    padding: 2.5rem 0 0;
+    border-top: 1px solid rgba(26, 26, 26, 0.06);
+    margin-top: 2rem;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+    .footer-links .footer-col:last-child {
+        grid-column: span 2;
+    }
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.footer-heading {
+    font-family: "Space Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a3d2f;
+    margin-bottom: 0.35rem;
+}
+
+.footer-col a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-decoration: none;
+    padding: 0.3rem 0;
+}
+
+.footer-col a span {
+    position: relative;
+}
+
+.footer-col a span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: #ff5900;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+}
+
+.footer-col a:hover span::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.footer-col a i {
+    font-size: 1.15rem;
+    color: #4a3d2f;
+    width: 1.2rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+    margin-top: 1rem;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.copyleft {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+/* ── buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.6rem;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.625rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-stamp {
+    background: #ff5900;
+    color: #faf3e8;
+}
+
+.btn-stamp:hover {
+    box-shadow: 0 4px 12px rgba(255, 89, 0, 0.25);
+}
+
+/* ── community emblem ── */
+.tools-emblem {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.cta-emblem {
+    width: 330px;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%) rotate(30deg);
+    opacity: 0.16;
+}
+
+/* ── past-event cards scattered like photos on a table ── */
+.photo-scatter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.photo-scatter > a {
+    width: clamp(160px, 28vw, 250px);
+    transform: rotate(var(--rot, 0deg));
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+    filter: drop-shadow(2px 4px 7px rgba(26, 26, 26, 0.18));
+    text-decoration: none;
+    color: inherit;
+}
+
+.photo-scatter > a:nth-child(4n + 1) { --rot: -3deg; }
+.photo-scatter > a:nth-child(4n + 2) { --rot: 2.5deg; }
+.photo-scatter > a:nth-child(4n + 3) { --rot: -1.5deg; }
+.photo-scatter > a:nth-child(4n + 4) { --rot: 3.5deg; }
+
+.photo-scatter > a:hover,
+.photo-scatter > a:focus-visible {
+    transform: rotate(0deg) translateY(-6px) scale(1.05);
+    z-index: 10;
+    filter: drop-shadow(3px 8px 14px rgba(26, 26, 26, 0.3));
+}
+
+/* ── friends marquee (same as "Friends of Absurd") ── */
+.friends-marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    max-width: 64rem;
+    margin-inline: auto;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.friends-marquee {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+}
+
+.friends-marquee:hover {
+    animation-play-state: paused;
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.friend-item:hover {
+    opacity: 1;
+}
+
+.friend-item img {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.friend-item span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        /* half the track, minus half a gap, so the loop seam lines up */
+        transform: translateX(calc(-50% - 1.5rem));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .friends-marquee {
+        animation: none;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    .top-nav a:not(.nav-join)::after,
+    .footer-col a span::after,
+    .ink-link,
+    .photo-scatter > a {
+        transition: none;
+    }
+}

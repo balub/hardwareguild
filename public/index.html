@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Open Hardware Guild - building India's open hardware community</title>
+        <meta
+            name="description"
+            content="A volunteer-run community bringing together people who design, build, document, and share open-source hardware across India. Started in Bangalore."
+        />
+        <link rel="canonical" href="https://openhardwareguild.org/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://openhardwareguild.org/" />
+        <meta
+            property="og:title"
+            content="Open Hardware Guild - building India's open hardware community"
+        />
+        <meta
+            property="og:description"
+            content="A volunteer-run community bringing together people who design, build, document, and share open-source hardware across India."
+        />
+        <meta name="theme-color" content="#d4b896" />
+        <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+        <!-- Fonts: Fraunces (display) + DM Sans (body) + Space Mono (stamps) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Icons -->
+        <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            kraft: {
+                                DEFAULT: "#D4B896",
+                                light: "#E8D5B7",
+                                dark: "#B8956A",
+                            },
+                            ink: { DEFAULT: "#1A1A1A", light: "#3D3D3D" },
+                            stamp: { DEFAULT: "#FF5900", dark: "#CC4700" },
+                            tape: "#F5E6C8",
+                            paper: "#FAF3E8",
+                            stencil: "#6B5B4A",
+                        },
+                        fontFamily: {
+                            serif: ['"Fraunces"', "Georgia", "serif"],
+                            sans: ['"DM Sans"', "system-ui", "sans-serif"],
+                            mono: ['"Space Mono"', "monospace"],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body class="font-sans text-ink min-h-screen">
+        <!-- SVG torn-edge filters -->
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+            <filter id="torn-edge-filter">
+                <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="5" result="t" />
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="6" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="torn-edge-filter-2">
+                <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="4" seed="2" result="t" />
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="7" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="torn-edge-filter-3">
+                <feTurbulence type="turbulence" baseFrequency="0.045" numOctaves="5" seed="5" result="t" />
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+
+        <!-- ── Header / nav ── -->
+        <header class="site-header">
+            <div class="max-w-6xl mx-auto px-4 md:px-6 pt-6 pb-2 mt-12 md:mt-20">
+                <div class="menu-band">
+                    <a href="#top" class="site-logo" aria-label="Open Hardware Guild home">
+                        <span class="wordmark"
+                            >Open Hardware Guild<small>india</small></span
+                        >
+                    </a>
+                    <nav class="top-nav hidden md:flex items-center gap-0.5 ml-auto">
+                        <a href="#projects">Projects</a>
+                        <a href="#events">Events</a>
+                        <a href="#get-involved">Get Involved</a>
+                        <a href="#how-we-operate">How We Operate</a>
+                        <a href="#about">About</a>
+                        <a href="#join" class="nav-join"
+                            ><i class="ph-bold ph-users-three"></i> Join</a
+                        >
+                    </nav>
+                    <a href="#join" class="nav-join nav-join-mobile md:hidden ml-auto"
+                        ><i class="ph-bold ph-users-three"></i> Join</a
+                    >
+                </div>
+            </div>
+        </header>
+
+        <main id="top">
+            <!-- ── 1. Hero ── -->
+            <section class="max-w-5xl mx-auto px-4 md:px-6 pt-14 pb-10 md:pt-24 md:pb-16">
+                <div class="relative">
+                    <div class="postal-stamp hidden md:flex absolute right-0 top-0">
+                        <span>Started in</span>
+                        <span class="text-[0.8rem]">Bangalore</span>
+                        <span>Open to</span>
+                        <span>all of India</span>
+                    </div>
+                    <div class="max-w-2xl">
+                        <h1
+                            class="font-serif font-black text-4xl sm:text-5xl md:text-6xl text-ink leading-[1.05] mb-6"
+                        >
+                            Building India's open hardware community.
+                        </h1>
+                        <p class="font-serif text-xl md:text-2xl text-ink mb-4 leading-snug">
+                            We're a volunteer-run community of people who design,
+                            build, document, and share open-source hardware.
+                        </p>
+                        <p class="text-base md:text-lg text-ink-light leading-relaxed mb-8">
+                            Electronics, robotics, tools, manufacturing. Whatever
+                            you're building, we want to make it easier to build it
+                            together and share it openly, anywhere in India.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <a href="#join" class="label-btn label-btn-stamp">Join the community</a>
+                            <a href="#projects" class="label-btn">Explore projects</a>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stat-chip"><i class="ph-bold ph-hand-heart"></i> 100% volunteer-run</span>
+                            <span class="stat-chip"><i class="ph-bold ph-git-fork"></i> Open source hardware</span>
+                            <span class="stat-chip"><i class="ph-bold ph-plant"></i> Just getting started</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Why we exist ── -->
+            <section class="py-14 md:py-24">
+                <div class="max-w-3xl mx-auto px-4">
+                    <div class="torn-card" style="padding-top: 16px">
+                        <div class="tape-piece"></div>
+                        <div class="torn-bg"></div>
+                        <div class="torn-content p-8 md:p-12">
+                            <div class="stamp-label mb-6">Why we exist</div>
+                            <p class="text-base md:text-lg text-ink-light leading-relaxed mb-4">
+                                India is full of engineers, makers, students,
+                                researchers, and tinkerers building genuinely
+                                interesting things.
+                            </p>
+                            <p class="text-base md:text-lg text-ink-light leading-relaxed mb-4">
+                                But building hardware in the open is still hard.
+                                Finding collaborators is hard. Finding the right
+                                know-how is hard. Keeping a project alive once the
+                                first prototype works is hard.
+                            </p>
+                            <p class="text-base md:text-lg text-ink-light leading-relaxed mb-6">
+                                We want a community where people can find each
+                                other, learn together, work on projects together,
+                                and add to an open hardware ecosystem that anyone
+                                can use.
+                            </p>
+                            <p
+                                class="font-serif font-black text-2xl md:text-3xl text-ink leading-snug"
+                            >
+                                This isn't just about meetups. It's about getting
+                                more open-source hardware built.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── What we do ── -->
+            <section class="py-14 md:py-24">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="stamp-label mb-8">What we do</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 torn-grid">
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-6">
+                                <div class="checklist-item pl-4">
+                                    <i class="ph-bold ph-users-three text-2xl text-ink mb-2 block"></i>
+                                    <h3 class="font-serif font-black text-xl mb-1">Community</h3>
+                                    <p class="text-ink-light">
+                                        Meetups, workshops, discussions, and local
+                                        gatherings for people who like building
+                                        hardware.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-6">
+                                <div class="checklist-item pl-4">
+                                    <i class="ph-bold ph-wrench text-2xl text-ink mb-2 block"></i>
+                                    <h3 class="font-serif font-black text-xl mb-1">Build</h3>
+                                    <p class="text-ink-light">
+                                        Open-source hardware projects, built
+                                        together. Find contributors, share ideas,
+                                        and get your hands dirty on someone
+                                        else's board.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-6">
+                                <div class="checklist-item pl-4">
+                                    <i class="ph-bold ph-book-open-text text-2xl text-ink mb-2 block"></i>
+                                    <h3 class="font-serif font-black text-xl mb-1">Learn &amp; share</h3>
+                                    <p class="text-ink-light">
+                                        Open documentation, tutorials, and shared
+                                        know-how. Hardware should feel
+                                        approachable, especially if you're new.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-6">
+                                <div class="checklist-item pl-4">
+                                    <i class="ph-bold ph-megaphone text-2xl text-ink mb-2 block"></i>
+                                    <h3 class="font-serif font-black text-xl mb-1">Support</h3>
+                                    <p class="text-ink-light">
+                                        Help open hardware projects get seen, find
+                                        collaborators, and meet people who can
+                                        help them move forward.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deliberately honest: the brief says not to imply grants/equipment/manufacturing. -->
+                    <p class="text-sm text-stencil mt-6 max-w-2xl">
+                        We don't hand out grants, equipment, or manufacturing
+                        services. What we have is people, time, and a lot of
+                        enthusiasm.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ── 2. Projects ── -->
+            <section id="projects" class="py-14 md:py-24">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="stamp-label mb-3">Projects</div>
+                    <p class="text-base md:text-lg text-ink-light mb-2 max-w-2xl">
+                        Open-source hardware being built by people in the
+                        community. Projects don't need to belong to us. Independent
+                        projects are very welcome.
+                    </p>
+                    <p class="text-sm text-stencil mb-10 max-w-2xl">
+                        <strong class="text-ink">Heads up:</strong> the cards below
+                        are examples showing what a listing will look like. Real
+                        projects go here as people share them.
+                    </p>
+
+                    <!-- To add a project: copy one <article> below, fill it in, and
+                         delete the "Example" stamp. Fields: name, description,
+                         image, maintainers, repo + docs links, status, how to help. -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 torn-grid">
+                        <article class="torn-card">
+                            <div class="torn-bg"></div>
+                            <span class="example-stamp">Example</span>
+                            <div class="torn-content">
+                                <div class="img-slot m-2 mb-0 h-44">
+                                    <i class="ph-duotone ph-cpu"></i>Project photo
+                                </div>
+                                <div class="p-6 pt-4">
+                                    <span class="stat-chip mb-3"><i class="ph-bold ph-circle"></i> Prototyping</span>
+                                    <h3 class="font-serif font-black text-2xl text-ink mb-1">[Project name]</h3>
+                                    <p class="text-ink-light leading-relaxed mb-4">
+                                        One or two lines on what it is and why
+                                        someone would want one. E.g. a small
+                                        dev board, a tool, a robot.
+                                    </p>
+                                    <dl class="text-sm space-y-2 mb-4">
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Maintainers</dt><dd class="text-ink">[Name], [Name]</dd></div>
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Help wanted</dt><dd class="text-ink">Firmware, testing, docs</dd></div>
+                                    </dl>
+                                    <div class="flex flex-wrap gap-4 text-sm">
+                                        <a href="#todo" class="slot">Repo link</a>
+                                        <a href="#todo" class="slot">Docs link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="torn-card">
+                            <div class="torn-bg"></div>
+                            <span class="example-stamp">Example</span>
+                            <div class="torn-content">
+                                <div class="img-slot m-2 mb-0 h-44">
+                                    <i class="ph-duotone ph-robot"></i>Project photo
+                                </div>
+                                <div class="p-6 pt-4">
+                                    <span class="stat-chip mb-3"><i class="ph-bold ph-circle-half"></i> Working, needs docs</span>
+                                    <h3 class="font-serif font-black text-2xl text-ink mb-1">[Project name]</h3>
+                                    <p class="text-ink-light leading-relaxed mb-4">
+                                        What it does, what's working, and what's
+                                        next. Keep it short and concrete.
+                                    </p>
+                                    <dl class="text-sm space-y-2 mb-4">
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Maintainers</dt><dd class="text-ink">[Name]</dd></div>
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Help wanted</dt><dd class="text-ink">Mechanical design, assembly guide</dd></div>
+                                    </dl>
+                                    <div class="flex flex-wrap gap-4 text-sm">
+                                        <a href="#todo" class="slot">Repo link</a>
+                                        <a href="#todo" class="slot">Docs link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="torn-card">
+                            <div class="torn-bg"></div>
+                            <span class="example-stamp">Example</span>
+                            <div class="torn-content">
+                                <div class="img-slot m-2 mb-0 h-44">
+                                    <i class="ph-duotone ph-toolbox"></i>Project photo
+                                </div>
+                                <div class="p-6 pt-4">
+                                    <span class="stat-chip mb-3"><i class="ph-fill ph-circle"></i> Stable</span>
+                                    <h3 class="font-serif font-black text-2xl text-ink mb-1">[Project name]</h3>
+                                    <p class="text-ink-light leading-relaxed mb-4">
+                                        A finished design people can build
+                                        themselves. Point to the build guide and
+                                        the bill of materials.
+                                    </p>
+                                    <dl class="text-sm space-y-2 mb-4">
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Maintainers</dt><dd class="text-ink">[Name], [Name], [Name]</dd></div>
+                                        <div><dt class="font-mono text-[0.65rem] uppercase tracking-widest text-stencil">Help wanted</dt><dd class="text-ink">Translations, test builds</dd></div>
+                                    </dl>
+                                    <div class="flex flex-wrap gap-4 text-sm">
+                                        <a href="#todo" class="slot">Repo link</a>
+                                        <a href="#todo" class="slot">Docs link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="torn-card mt-10 max-w-3xl">
+                        <div class="torn-bg-kraft"></div>
+                        <div class="torn-content p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+                            <div class="flex-1">
+                                <h3 class="font-serif font-black text-2xl text-ink mb-1">
+                                    Have an open hardware project?
+                                </h3>
+                                <p class="text-ink-light">
+                                    Share it with the community. Half-finished is
+                                    fine. Messy repos are fine. That's how most
+                                    good projects start.
+                                </p>
+                            </div>
+                            <!-- TODO: link to a project submission form / issue template -->
+                            <a href="#todo" class="label-btn label-btn-stamp shrink-0">Share your project</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 3. Events ── -->
+            <section id="events" class="py-14 md:py-24">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="stamp-label mb-3">Events</div>
+                    <p class="text-base md:text-lg text-ink-light mb-6 max-w-2xl">
+                        We started in Bangalore, but we'd love to see gatherings
+                        all over India. Here's the kind of thing we get together
+                        for:
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-12">
+                        <span class="stat-chip"><i class="ph-bold ph-coffee"></i> Hardware meetups</span>
+                        <span class="stat-chip"><i class="ph-bold ph-chalkboard-teacher"></i> Workshops</span>
+                        <span class="stat-chip"><i class="ph-bold ph-hammer"></i> Build sessions</span>
+                        <span class="stat-chip"><i class="ph-bold ph-presentation"></i> Project demos</span>
+                        <span class="stat-chip"><i class="ph-bold ph-chats-circle"></i> Community discussions</span>
+                        <span class="stat-chip"><i class="ph-bold ph-lightning"></i> Hack sessions</span>
+                    </div>
+
+                    <h3 class="font-serif font-black text-2xl md:text-3xl text-ink mb-5">Upcoming</h3>
+
+                    <!-- No upcoming events yet: the brief says not to invent any.
+                         When one is confirmed, replace the empty-state card with
+                         copies of this template:
+
+                    <div class="torn-card">
+                        <div class="torn-bg"></div>
+                        <div class="torn-content p-6 md:p-8 grid md:grid-cols-[9rem_1fr_auto] gap-4 md:items-center">
+                            <div class="font-mono font-bold uppercase text-stamp leading-tight">
+                                <div class="text-3xl">14</div><div class="text-sm tracking-widest">Nov 2026</div>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-black text-xl text-ink">Event name</h4>
+                                <p class="text-sm text-stencil mb-1"><i class="ph-bold ph-map-pin"></i> Venue, City</p>
+                                <p class="text-ink-light">One or two lines on what happens and who it's for.</p>
+                            </div>
+                            <a href="REGISTRATION-LINK" class="label-btn label-btn-stamp">Register</a>
+                        </div>
+                    </div>
+                    -->
+                    <div class="torn-card mb-14">
+                        <div class="torn-bg"></div>
+                        <div class="torn-content p-8 md:p-10 text-center">
+                            <i class="ph-duotone ph-calendar-blank text-5xl text-stencil mb-3 block"></i>
+                            <h4 class="font-serif font-black text-2xl text-ink mb-2">
+                                Nothing on the calendar yet.
+                            </h4>
+                            <p class="text-ink-light max-w-lg mx-auto mb-6">
+                                We're just getting going under the new name. Want
+                                to host a meetup or run a workshop in your city?
+                                You don't need permission. We'll help you get the
+                                word out.
+                            </p>
+                            <a href="#join" class="label-btn">Propose an event</a>
+                        </div>
+                    </div>
+
+                    <h3 class="font-serif font-black text-2xl md:text-3xl text-ink mb-2">Past</h3>
+                    <p class="text-ink-light mb-8 max-w-2xl">
+                        Some of what we got up to as Absurd Industries. Talks,
+                        builds, and workshops, recorded.
+                    </p>
+                    <!-- Real recordings from the Absurd YouTube channel (same set as absurd.industries). -->
+                    <div class="photo-scatter torn-grid">
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=Ph6-Aq1iDQc" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/Ph6-Aq1iDQc/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">IndiaFOSS 2025</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=imo4mWWDieQ" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/imo4mWWDieQ/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">IndiaFOSS 2024</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=40Eub7Q78Go" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/40Eub7Q78Go/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">Build your own Supersaber</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=3TtusmFDoh0" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/3TtusmFDoh0/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">Drone Genesis</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=UiJbgOzwvzU" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/UiJbgOzwvzU/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">CoryDora: a macropad and local manufacturing</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=1OHxALwsFdE" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/1OHxALwsFdE/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">T1 Workshop</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=lE3vUt4PQzU" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/lE3vUt4PQzU/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">Deutron and Mantis</p>
+                            </div>
+                        </a>
+                        <a class="torn-card" href="https://www.youtube.com/watch?v=8wpQmoXW4Lk" target="_blank" rel="noopener">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-2">
+                                <img src="https://img.youtube.com/vi/8wpQmoXW4Lk/hqdefault.jpg" alt="" loading="lazy" class="w-full aspect-video object-cover bg-ink" />
+                                <p class="font-serif font-black text-sm text-ink px-1 pt-2 pb-1">Meetup, 2nd Dec</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 4. Get involved ── -->
+            <section id="get-involved" class="py-14 md:py-24">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="stamp-label mb-6">Get involved</div>
+                    <h2 class="font-serif font-black text-3xl md:text-4xl text-ink mb-4 max-w-3xl leading-tight">
+                        You don't need to be a hardware engineer to be here.
+                    </h2>
+                    <p class="text-base md:text-lg text-ink-light mb-10 max-w-2xl">
+                        Students, hobbyists, designers, writers, people who are just
+                        curious. Small contributions count. An hour a month counts.
+                        Pick whatever fits.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 torn-grid">
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-hand-waving text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Join the community</h3>
+                                <p class="text-ink-light">Meet other people who are into open-source hardware. Say hi, lurk, ask questions.</p>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-package text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Bring your project</h3>
+                                <p class="text-ink-light">Share something you're working on and find people who want to help build it.</p>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-git-pull-request text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Contribute to projects</h3>
+                                <p class="text-ink-light">Electronics, firmware, mechanical design, documentation, testing. There's always something.</p>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-map-pin-line text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Organize something</h3>
+                                <p class="text-ink-light">Run a meetup, a workshop, or a small gathering in your city or campus.</p>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-chalkboard-simple text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Share knowledge</h3>
+                                <p class="text-ink-light">Give a talk, write a guide, teach a workshop, or sit with someone while they solder their first board.</p>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <i class="ph-duotone ph-gear-six text-3xl text-stamp mb-3 block"></i>
+                                <h3 class="font-serif font-black text-xl mb-1">Help run the community</h3>
+                                <p class="text-ink-light">Events, communications, projects, docs, day-to-day operations. This is how the community gets shaped.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <a href="#join" class="label-btn label-btn-stamp">Say hello</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 5. How we operate ── -->
+            <!-- These are principles, NOT existing systems. The brief is explicit:
+                 don't add elections, committees, voting, or membership rules here
+                 until the community actually decides on them. -->
+            <section id="how-we-operate" class="py-14 md:py-24">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="torn-card">
+                        <div class="torn-bg-ink"></div>
+                        <div class="torn-content p-8 md:p-12 relative overflow-hidden">
+                            <img src="assets/images/tools-circle.png" class="tools-emblem cta-emblem" alt="" aria-hidden="true" />
+                            <div class="relative z-10">
+                                <div class="stamp-label mb-6" style="color: #faf3e8; border-color: #faf3e8">How we operate</div>
+                                <h2 class="font-serif font-black text-3xl md:text-4xl text-paper mb-4 max-w-2xl leading-tight">
+                                    Community-driven for real. Not as branding.
+                                </h2>
+                                <p class="text-base md:text-lg mb-10 max-w-2xl" style="color: #e8d5b7">
+                                    These are the principles we're holding ourselves
+                                    to. We haven't built the formal processes behind
+                                    them yet. We want to figure those out with the
+                                    people who show up.
+                                </p>
+                                <ol class="grid md:grid-cols-2 gap-x-10 gap-y-7">
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">01</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Community voice</h3>
+                                            <p style="color: #e8d5b7">Members should know how to suggest ideas, raise concerns, and influence where we're headed.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">02</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Transparency</h3>
+                                            <p style="color: #e8d5b7">Important decisions, priorities, and how things get done should be understandable and easy to find.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">03</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Volunteer ownership</h3>
+                                            <p style="color: #e8d5b7">If you take something on, you get real responsibility and a real say in how it's done.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">04</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Open participation</h3>
+                                            <p style="color: #e8d5b7">Anyone can contribute, whatever their background or experience.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">05</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Shared direction</h3>
+                                            <p style="color: #e8d5b7">The community shapes the goals and priorities. Organizers and volunteers turn them into action.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4">
+                                        <span class="font-mono font-bold text-stamp text-lg">06</span>
+                                        <div>
+                                            <h3 class="font-serif font-black text-xl text-paper mb-1">Accountability</h3>
+                                            <p style="color: #e8d5b7">Who's responsible for what should be clear. New people should get room to lead, so the same few don't run everything forever.</p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 6. About ── -->
+            <section id="about" class="py-14 md:py-24">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="grid md:grid-cols-[1fr_16rem] gap-10 items-start">
+                        <div class="torn-card" style="padding-top: 16px">
+                            <div class="tape-piece"></div>
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-8 md:p-12">
+                                <div class="stamp-label mb-6">About us</div>
+                                <p class="text-base md:text-lg text-ink-light leading-relaxed mb-4">
+                                    We started as
+                                    <a href="https://absurd.industries" class="ink-link" target="_blank" rel="noopener">Absurd Industries</a>,
+                                    a small bunch of hardware enthusiasts in
+                                    Bangalore who wanted to meet other makers and
+                                    build things together.
+                                </p>
+                                <p class="text-base md:text-lg text-ink-light leading-relaxed mb-4">
+                                    Over time we saw a chance to focus on something
+                                    more specific: helping open-source hardware
+                                    grow in India.
+                                </p>
+                                <p class="text-base md:text-lg text-ink-light leading-relaxed mb-6">
+                                    So we're carrying the people, the community, and
+                                    the volunteer spirit of Absurd forward, under a
+                                    new name and a clearer mission.
+                                </p>
+                                <p class="font-serif font-black text-2xl text-ink leading-snug">
+                                    We're still small. No big organization, no
+                                    serious money behind us. We're building this
+                                    alongside whoever chooses to show up.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center gap-3 pt-6">
+                            <img src="assets/images/absurd-logo-for-any-background.png" alt="Absurd Industries logo" class="w-52" style="transform: rotate(-12deg); filter: drop-shadow(2px 4px 6px rgba(26, 26, 26, 0.22))" />
+                            <p class="font-mono text-[0.7rem] uppercase tracking-widest text-stencil text-center">
+                                Where we came from
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-serif font-black text-2xl md:text-3xl text-ink mt-16 mb-2">Organizers &amp; volunteers</h3>
+                    <p class="text-ink-light mb-8 max-w-2xl">
+                        The people currently keeping things running. This list
+                        should grow and change. That's the point.
+                    </p>
+                    <!-- One card per person. Photos go in assets/images/team/ (square
+                         works best). TODO: Srinivasan photo, Amit +
+                         Srinivasan profile links. -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 torn-grid">
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-4 text-center">
+                                <img src="assets/images/team/balu.jpg" alt="Balu Babu" class="w-full aspect-square object-cover mb-3" loading="lazy" />
+                                <p class="font-serif font-black text-lg text-ink">Balu Babu</p>
+                                <p class="text-sm text-ink-light mb-2">Organizer</p>
+                                <a href="https://github.com/balub" target="_blank" rel="noopener" class="ink-link text-sm">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-4 text-center">
+                                <img src="assets/images/team/amit.jpg" alt="Amit" class="w-full aspect-square object-cover mb-3" loading="lazy" />
+                                <p class="font-serif font-black text-lg text-ink">Amit</p>
+                                <p class="text-sm text-ink-light mb-2">Organizer</p>
+                                <a href="#todo" class="slot text-xs">Profile link</a>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-4 text-center">
+                                <div class="img-slot aspect-square mb-3"><i class="ph-duotone ph-user"></i>Photo needed</div>
+                                <p class="font-serif font-black text-lg text-ink">Srinivasan</p>
+                                <p class="text-sm text-ink-light mb-2">Organizer</p>
+                                <a href="#todo" class="slot text-xs">Profile link</a>
+                            </div>
+                        </div>
+                        <a href="#join" class="torn-card lift block" style="text-decoration: none; color: inherit">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-4 text-center h-full flex flex-col items-center justify-center" style="border: 2px dashed rgba(26, 26, 26, 0.3)">
+                                <i class="ph-bold ph-plus-circle text-4xl text-stamp mb-2"></i>
+                                <p class="font-serif font-black text-lg text-ink">This could be you</p>
+                                <p class="text-sm text-ink-light">Help run the community</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Friends of the Guild (marquee) ── -->
+            <!-- Carried over from "Friends of Absurd" on absurd.industries.
+                 To add a friend: copy one <a class="friend-item"> block. List
+                 each friend once; the script at the bottom of the page repeats
+                 the row so the scroll loops. -->
+            <section id="friends" class="py-14 md:py-24 overflow-hidden">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="stamp-label mb-3">Friends of the Guild</div>
+                    <p class="text-base md:text-lg text-ink-light max-w-xl leading-relaxed mb-8">
+                        Communities and companies building open hardware
+                        alongside us.
+                    </p>
+                </div>
+                <div class="friends-marquee-wrapper">
+                    <div class="friends-marquee" id="friendsMarquee">
+                        <a href="https://pcbcupid.com" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/pcb-cupid.png" alt="" loading="lazy" />
+                            <span>PCB Cupid</span>
+                        </a>
+                        <a href="https://ampere.works" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/ampere-works.png" alt="" loading="lazy" />
+                            <span>ampere.works</span>
+                        </a>
+                        <a href="https://uservader.com" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/vader.png" alt="" loading="lazy" />
+                            <span>Vader</span>
+                        </a>
+                        <a href="https://makerville.io" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/makerville.svg" alt="" loading="lazy" />
+                            <span>Makerville</span>
+                        </a>
+                        <a href="https://fossunited.org" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/foss-united.svg" alt="" loading="lazy" />
+                            <span>FOSS United</span>
+                        </a>
+                        <a href="https://mecha.so/" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/mecha.svg" alt="" loading="lazy" />
+                            <span>Mecha</span>
+                        </a>
+                        <a href="https://www.isfixable.com/" target="_blank" rel="noopener" class="friend-item">
+                            <img src="assets/images/friends/isfixable.svg" alt="" loading="lazy" />
+                            <span>isFixable</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 7. Resources ── -->
+            <!-- Plain curated links. None of these are run by us or partners of
+                 ours; say so if you add more. -->
+            <section id="resources" class="py-14 md:py-24">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="stamp-label mb-3">Resources</div>
+                    <p class="text-base md:text-lg text-ink-light mb-10 max-w-2xl">
+                        Useful stuff we keep coming back to. We don't run any of
+                        these. They're just good. Know something that belongs here?
+                        Tell us.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 torn-grid">
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <h3 class="font-mono font-bold text-xs uppercase tracking-widest text-stencil mb-3">Open hardware basics</h3>
+                                <ul class="space-y-2">
+                                    <li><a class="ink-link" href="https://www.oshwa.org/definition/" target="_blank" rel="noopener">Open Source Hardware Definition</a></li>
+                                    <li><a class="ink-link" href="https://certification.oshwa.org/" target="_blank" rel="noopener">OSHWA certification</a></li>
+                                    <li><a class="ink-link" href="https://hackaday.io/" target="_blank" rel="noopener">Hackaday.io projects</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <h3 class="font-mono font-bold text-xs uppercase tracking-widest text-stencil mb-3">Open design tools</h3>
+                                <ul class="space-y-2">
+                                    <li><a class="ink-link" href="https://www.kicad.org/" target="_blank" rel="noopener">KiCad</a> <span class="text-sm text-stencil">for PCBs</span></li>
+                                    <li><a class="ink-link" href="https://www.freecad.org/" target="_blank" rel="noopener">FreeCAD</a> <span class="text-sm text-stencil">for mechanical</span></li>
+                                    <li><a class="ink-link" href="https://openscad.org/" target="_blank" rel="noopener">OpenSCAD</a> <span class="text-sm text-stencil">for code-as-CAD</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="torn-card">
+                            <div class="torn-bg"></div>
+                            <div class="torn-content p-6">
+                                <h3 class="font-mono font-bold text-xs uppercase tracking-widest text-stencil mb-3">Learning</h3>
+                                <ul class="space-y-2">
+                                    <li><a class="ink-link" href="https://learn.adafruit.com/" target="_blank" rel="noopener">Adafruit Learning System</a></li>
+                                    <li><a class="ink-link" href="https://learn.sparkfun.com/" target="_blank" rel="noopener">SparkFun tutorials</a></li>
+                                    <li><a class="ink-link" href="https://docs.kicad.org/" target="_blank" rel="noopener">KiCad docs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="torn-card md:col-span-3">
+                            <div class="torn-bg-kraft"></div>
+                            <div class="torn-content p-6 grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="font-mono font-bold text-xs uppercase tracking-widest text-stencil mb-2">Manufacturing &amp; prototyping in India</h3>
+                                    <p class="text-ink-light">Where to get PCBs made, where to source parts, who does small-batch fabrication. <span class="slot">Needs a volunteer to write it</span></p>
+                                </div>
+                                <div>
+                                    <h3 class="font-mono font-bold text-xs uppercase tracking-widest text-stencil mb-2">Community-contributed guides</h3>
+                                    <p class="text-ink-light">Write-ups from people in the community. <span class="slot">First guide could be yours</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── 8. Contact & community links ── -->
+            <!-- TODO: every .slot link below needs a real URL. Don't make up
+                 accounts; leave the placeholder until one actually exists. -->
+            <section id="join" class="py-14 md:py-24">
+                <div class="max-w-4xl mx-auto px-4">
+                    <div class="stamp-label mb-6">Find us</div>
+                    <div class="torn-card mb-10">
+                        <div class="torn-bg"></div>
+                        <ul class="torn-content divide-y divide-dashed divide-ink/20 px-6 md:px-8 py-2">
+                            <li class="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-6 py-5">
+                                <i class="ph-duotone ph-chats-teardrop text-3xl text-stamp shrink-0"></i>
+                                <div class="flex-1"><p class="font-serif font-black text-lg text-ink">Join the conversation</p><p class="text-sm text-ink-light">Where most of the community talks day to day.</p></div>
+                                <a href="#todo" class="slot">Discussion platform link</a>
+                            </li>
+                            <li class="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-6 py-5">
+                                <i class="ph-duotone ph-megaphone-simple text-3xl text-stamp shrink-0"></i>
+                                <div class="flex-1"><p class="font-serif font-black text-lg text-ink">Follow announcements</p><p class="text-sm text-ink-light">Events and news, without the chatter.</p></div>
+                                <a href="#todo" class="slot">Announcements link</a>
+                            </li>
+                            <li class="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-6 py-5">
+                                <i class="ph-duotone ph-envelope-simple text-3xl text-stamp shrink-0"></i>
+                                <div class="flex-1"><p class="font-serif font-black text-lg text-ink">Contact the organizers</p><p class="text-sm text-ink-light">Questions, ideas, concerns. All welcome.</p></div>
+                                <a href="#todo" class="slot">Contact email / form</a>
+                            </li>
+                            <li class="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-6 py-5">
+                                <i class="ph-duotone ph-git-branch text-3xl text-stamp shrink-0"></i>
+                                <div class="flex-1"><p class="font-serif font-black text-lg text-ink">Project repositories</p><p class="text-sm text-ink-light">Code, schematics, and docs for community projects.</p></div>
+                                <a href="#todo" class="slot">Repositories link</a>
+                            </li>
+                            <li class="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-6 py-5">
+                                <i class="ph-duotone ph-calendar-plus text-3xl text-stamp shrink-0"></i>
+                                <div class="flex-1"><p class="font-serif font-black text-lg text-ink">Propose an event or activity</p><p class="text-sm text-ink-light">Got an idea for a meetup, workshop, or build day?</p></div>
+                                <a href="#todo" class="slot">Proposal form link</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="torn-card">
+                        <div class="torn-bg-ink"></div>
+                        <div class="torn-content p-8 md:p-12 relative overflow-hidden">
+                            <img src="assets/images/tools-circle.png" class="tools-emblem cta-emblem" alt="" aria-hidden="true" />
+                            <div class="relative z-10 max-w-xl">
+                                <h2 class="font-serif font-black text-2xl md:text-3xl text-paper mb-3">
+                                    This is the beginning. Help shape it.
+                                </h2>
+                                <p class="text-base leading-relaxed" style="color: #e8d5b7">
+                                    We haven't figured everything out, and we don't
+                                    want to do it alone. Show up, build something,
+                                    tell us what you'd change.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ── Footer ── -->
+        <footer class="footer-wrap">
+            <div class="max-w-5xl mx-auto px-5 sm:px-6">
+                <div class="flex flex-col items-center mb-8 pt-2">
+                    <a href="#top" class="site-logo" style="position: static; transform: rotate(-6deg)" aria-label="Open Hardware Guild home">
+                        <span class="wordmark">Open Hardware Guild<small>india</small></span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Build</h4>
+                        <a href="#projects"><i class="ph-duotone ph-cpu"></i> <span>Projects</span></a>
+                        <a href="#events"><i class="ph-duotone ph-calendar"></i> <span>Events</span></a>
+                        <a href="#resources"><i class="ph-duotone ph-books"></i> <span>Resources</span></a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Community</h4>
+                        <a href="#get-involved"><i class="ph-duotone ph-hand-waving"></i> <span>Get involved</span></a>
+                        <a href="#how-we-operate"><i class="ph-duotone ph-compass"></i> <span>How we operate</span></a>
+                        <a href="#join"><i class="ph-duotone ph-chats-teardrop"></i> <span>Find us</span></a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">More</h4>
+                        <a href="#about"><i class="ph-duotone ph-info"></i> <span>About</span></a>
+                        <a href="https://absurd.industries" target="_blank" rel="noopener"><i class="ph-duotone ph-clock-counter-clockwise"></i> <span>Absurd Industries</span></a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="text-xs text-stencil">
+                        <span class="copyleft">&copy;</span> Copyleft Open Hardware Guild.
+                        Volunteer-run. Started in Bangalore, open to all of India.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ── Mobile bottom bar ── -->
+        <nav class="mobile-bar md:hidden" aria-label="Sections">
+            <div class="grid grid-cols-4">
+                <a href="#projects"><i class="ph-bold ph-cpu"></i><span>Projects</span></a>
+                <a href="#events"><i class="ph-bold ph-calendar"></i><span>Events</span></a>
+                <a href="#get-involved"><i class="ph-bold ph-hand-waving"></i><span>Help out</span></a>
+                <a href="#join"><i class="ph-bold ph-users-three"></i><span>Join</span></a>
+            </div>
+        </nav>
+
+        <script>
+            // Repeat the friends row so the marquee loops without a gap. The
+            // CSS slides the track by exactly half, so both halves must match.
+            (function () {
+                var track = document.getElementById("friendsMarquee");
+                if (!track) return;
+                var originals = Array.prototype.slice.call(track.children);
+                // copies per half: enough to cover wide screens
+                var perHalf = 2;
+                for (var i = 1; i < perHalf * 2; i++) {
+                    originals.forEach(function (el) {
+                        var c = el.cloneNode(true);
+                        c.setAttribute("aria-hidden", "true");
+                        c.setAttribute("tabindex", "-1");
+                        track.appendChild(c);
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>

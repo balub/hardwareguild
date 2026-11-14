@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Static-only Worker: no script, Cloudflare just serves the files in public/.
+  "name": "openhardwareguild",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public"
+  },
+  "routes": [
+    { "pattern": "openhardwareguild.org", "custom_domain": true },
+    { "pattern": "www.openhardwareguild.org", "custom_domain": true }
+  ],
+  "workers_dev": true
+}
