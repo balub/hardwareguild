@@ -39,7 +39,7 @@ Good-faith disagreement, reporting problems, and constructive criticism are welc
 
 ## Reporting a concern
 
-Report concerns privately to **[primary contact name or role and email]**.
+Report concerns privately to **[balu@usevader.dev](mailto:balu@usevader.dev)**.
 
 If that person is involved in the concern, has a conflict of interest, or you are uncomfortable approaching them, contact **[alternative contact name or role and separate email]**.
 
